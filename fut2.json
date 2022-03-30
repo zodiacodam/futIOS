@@ -1,7 +1,8 @@
 {
+  "success": 1,
   "result": [
     {
-      "id": "177",
+      "league_key": "177",
       "league_name": "Premier League",
       "country_key": "50",
       "country_name": "Ghana",
@@ -9,7 +10,7 @@
       "country_logo": "https://apiv2.allsportsapi.com/logo/logo_country/50_ghana.png"
     },
     {
-      "id": "423",
+      "league_key": "423",
       "league_name": "Cup",
       "country_key": "73",
       "country_name": "Lithuania",

@@ -20,6 +20,9 @@
         "endDate": "2021-11-16",
         "currentMatchday": 6,
         "winner": null
-      }
+      },
+      "numberOfAvailableSeasons": 2,
+      "lastUpdated": "2022-03-13T18:51:44Z"
+    }
    ]
 }

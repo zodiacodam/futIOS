@@ -6,18 +6,18 @@
         "id": 2001,
         "name": "Africa",
         "countryCode": "AFR",
-        "ensignUrl": null
+        "ensignUrl": "null"
       },
       "name": "WC Qualification CAF",
       "code": "QCAF",
-      "emblemUrl": null,
+      "emblemUrl": "null",
       "plan": "TIER_FOUR",
       "currentSeason": {
         "id": 555,
         "startDate": "2019-09-04",
         "endDate": "2021-11-16",
         "currentMatchday": 6,
-        "winner": null
+        "winner": "null"
       },
       "numberOfAvailableSeasons": 2,
       "lastUpdated": "2022-03-13T18:51:44Z"

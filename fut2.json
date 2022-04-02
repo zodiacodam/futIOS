@@ -67,6 +67,31 @@
       },
       "numberOfAvailableSeasons": 4,
       "lastUpdated": "2021-05-28T18:02:40Z"
-    }
+    },
+    {
+      "id": 2022,
+      "area": {
+        "id": 2016,
+        "name": "Austria",
+        "countryCode": "AUT",
+        "ensignUrl": "https://upload.wikimedia.org/wikipedia/commons/4/41/Flag_of_Austria.svg"
+      },
+      "name": "Playoffs 1/2",
+      "code": "APL",
+      "emblemUrl": null,
+      "plan": "TIER_TWO",
+      "currentSeason": {
+        "id": 24,
+        "startDate": "2018-05-31",
+        "endDate": "2018-06-03",
+        "currentMatchday": null,
+        "winner": {
+          "id": 2022,
+          "name": "spusu SKN St. Pölten",
+          "shortName": "St. Pölten",
+          "tla": "STP",
+          "crestUrl": "https://crests.football-data.org/2022.svg"
+        }
+      }
  ]
 }

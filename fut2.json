@@ -20,22 +20,6 @@
                     "goalsFor": 8,
                     "goalsAgainst": 1,
                     "goalDifference": 7
-                },
-                {
-                    "position": 2,
-                    "team": {
-                        "id": 64,
-                        "name": "Liverpool FC",
-                        "crestUrl": "http://upload.wikimedia.org/wikipedia/de/0/0a/FC_Liverpool.svg"
-                    },
-                    "playedGames": 2,
-                    "won": 2,
-                    "draw": 0,
-                    "lost": 0,
-                    "points": 6,
-                    "goalsFor": 6,
-                    "goalsAgainst": 0,
-                    "goalDifference": 6
                 }
          ]
         }

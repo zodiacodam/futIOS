@@ -9,33 +9,128 @@ import UIKit
 class ViewController: UIViewController {
     
     private var competitions: [Competitions] = []
+    private var competition: [Competition] = []
+    private var standings: [Standings] = []
 
+    @IBOutlet weak var label: UILabel!
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
+//        readFile2()
         readFile()
-        mostrarJsonConsola()
-        // Do any additional setup after loading the view.
+        super.viewDidLoad()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+//            self.mostrar()
+        }
+
     }
 
     private func readFile() {
-        if let url = URL(string: "https://raw.githubusercontent.com/zodiacodam/futIOS/main/fut2.json"),
-         let data = try? Data(contentsOf: url) {
-        let decoder = JSONDecoder()
-        if let jsonData = try? decoder.decode(JSONData.self, from: data) {
-          self.competitions = jsonData.competitions
-//            print(jsonData)
+        let url = URL(string: "http://api.football-data.org/v2/competitions/2014/standings")
+ 
+        guard let requestUrl = url else { fatalError() }
+        
+        var request = URLRequest(url: requestUrl)
+        request.addValue("ca85682defbf4b57992b9eb3abdef8ce", forHTTPHeaderField: "X-Auth-Token")
+        request.httpMethod = "GET"
+
+        let task = URLSession.shared.dataTask(with: request) { [self] (data, response, error) in
+                         
+            if let error = error {
+                print("Error took place \(error)")
+                return
+            }
+            guard let data = data else {return}
+            do{
+                if let jsonData = try? JSONDecoder().decode(JSONData.self, from: data){
+//                    self.standings = jsonData.standings
+                    print("👍🏻 ","Leyendo el array........", jsonData) // MOSTRAR POR CONSOLA
+                }
+            }
         }
-      }
-    }
+        task.resume()
+}
+  
+    private func readFile2() {
+        let url = URL(string: "http://api.football-data.org/v2/competitions")
+ 
+        guard let requestUrl = url else { fatalError() }
+        
+        var request = URLRequest(url: requestUrl)
+        request.addValue("ca85682defbf4b57992b9eb3abdef8ce", forHTTPHeaderField: "X-Auth-Token")
+        request.httpMethod = "GET"
+
+        let task = URLSession.shared.dataTask(with: request) { [self] (data, response, error) in
+                         
+            if let error = error {
+                print("Error took place \(error)")
+                return
+            }
+            guard let data = data else {return}
+            do{
+                if let jsonData = try? JSONDecoder().decode(JSONData2.self, from: data){
+                    self.competitions = jsonData.competitions
+                    print("🔥 ","Leyendo el array de Prueba........", jsonData) // MOSTRAR POR CONSOLA
+                }
+            }
+        }
+        task.resume()
+}
     
     struct JSONData: Decodable {
-      let competitions: [Competitions]
-
+        let competition: [Competition]
+        let season: [Season]
+        let standings: [Standings]
+}
+    
+    struct JSONData2: Decodable {
+        let competitions: [Competitions]
+}
+// SON DEL TIPO DEL QUE VIENE EN EL JSO
+//----------------------------------------------------------------------------------------------
+    struct Standings: Decodable {
+        let stage: String?
+        let type: String?
+        let group: String?
+        let table: Table?
+            struct Table: Decodable {
+                let position: Int?
+                let team: Team?
+                    struct Team: Decodable {
+                                let id: Int?
+                                let name: String?
+                                let crestUrl: String?
+                    }
+                let playedGames: Int?
+                let form: Int?
+                let won: Int?
+                let draw: Int?
+                let lost: Int?
+                let points: Int?
+                let goalsFor: Int?
+                let goalsAgainst: Int?
+                let goalDifference: Int?
+            }
     }
-    func mostrarJsonConsola() {
-        print(competitions)
+    struct Competition: Decodable {
+      let id: Int?
+      let area: Area?
+        struct Area: Decodable{
+            let id: Int?
+            let name: String?
+        }
+        let name: String?
+        let code: String?
+        let plan : String?
+        let lastUpdated: String?
+      }
+    struct Season: Decodable {
+        let id: Int?
+        let startDate: String?
+        let endDate: String?
+        let currentMatchday: Int?
+        let winner: String?
     }
-//SON TODOS STRING YA QUE EL JSON VIENE DE ESTA MANERA
+//----------------------------------------------------------------------------------------------
     struct Competitions: Decodable {
       let id: Int?
       let area: Area?
@@ -67,8 +162,15 @@ class ViewController: UIViewController {
       let numberOfAvailableSeasons: Int?
       let lastUpdated: String?
     }
+    
+    /*
+       func mostrar(){
+           print("Buscando en el array........")
+           for competitio in competition {
+               if (competitions.name == "Premier Liha"){
+                   self.label.text = competitions.code
+               }
+           }
+       }*/
 }
-/*
-request.allHTTPHeaderFields = [
-    "X-Auth-Token": "ca85682defbf4b57992b9eb3abdef8ce"
-]*/
+
